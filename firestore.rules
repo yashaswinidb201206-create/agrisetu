@@ -1,0 +1,12 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // STARTER RULES: users must be signed in. This enables the college prototype
+    // to share marketplace data across authenticated farmer and consumer devices.
+    // Before a public commercial launch, replace with role/ownership validation
+    // for products, orders, chats, complaints and user profiles.
+    match /{collection}/{documentId} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
